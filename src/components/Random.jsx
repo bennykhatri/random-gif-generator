@@ -3,23 +3,22 @@ import Spinner from './Spinner';
 
 const Random = () => {
     const [gif, setGif] = useState(null);
-    let w=null, h=null;
     const [loading,setLoading] = useState(false);
     let apiKey = "eQw4D7MxUKTCxatAzmZlmoBvdLHqAxlN"
-    let baseUrl = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=&rating=g`
+    let baseUrl = `https://api.giphy.com/v1/gifs/random?api_key=${apiKey}&tag=&rating=g`;
     
     const fetchRandomGif = async () => 
     {
             setLoading(true); 
             let gifUrl = await fetch(baseUrl);
             let data = await gifUrl.json();
-            setGif(data.data.images.downsized_large.url); 
+            setGif(data.data.images.fixed_height_downsampled.url); 
             setLoading(false);   
     }
 
     async function clickHandler()
     {
-        fetchRandomGif()
+        fetchRandomGif();
     }
 
     useEffect(() => 
